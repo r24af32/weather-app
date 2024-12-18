@@ -13,12 +13,12 @@ const WeatherApp = () => {
   const [data, setData] = useState({});
   const [location,setLocation] = useState('');
   const [loading, setLoading] = useState(false);
-  const api_key = 'ea5e9534cb4211b865c762b1b37db8bb'
+  
   useEffect(() => {
     const fetchDefaultWeather = async () => {
       setLoading(true)
       const defaultlocation = 'Cuddalore'
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultlocation}&units=Metric&appid=${api_key}`
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultlocation}&units=Metric&appid=${import.meta.env.VITE_API_KEY}`
       const res = await fetch(url)
       const defaultData = await res.json()
       setData(defaultData)
@@ -32,7 +32,7 @@ const WeatherApp = () => {
   }
   const search = async () => {
     if(location.trim() !== ''){ 
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=Metric&appid=${api_key}`
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=Metric&appid=${import.meta.env.VITE_API_KEY}`
     const res = await fetch(url)
     const searchData = await res.json()
     if(searchData.cod !== 200){
